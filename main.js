@@ -183,6 +183,13 @@ window.addEventListener("DOMContentLoaded", function () {
 var calendar = document.getElementById("calendar");
 var timeSlot = document.getElementById("timeSlot");
 
+var clientName = document.getElementById("clientName");
+var clientEmail = document.getElementById("clientEmail");
+var companyName = document.getElementById("companyName");
+var consultationReason = document.getElementById("consultationReason");
+var bookBtn = document.getElementById("bookBtn");
+
+
 if (calendar) {
 
   var currentDate = new Date();
@@ -225,6 +232,74 @@ if (calendar) {
   }
 
   function renderCalendar() {
+
+    /*
+ * BOOK CONSULTATION
+ */
+if (bookBtn) {
+
+  bookBtn.addEventListener("click", function () {
+
+    if (!selectedDate) {
+      alert("Please select a consultation date.");
+      return;
+    }
+
+    if (!timeSlot || !timeSlot.value) {
+      alert("Please select a consultation time.");
+      return;
+    }
+
+    if (!clientName || !clientName.value.trim()) {
+      alert("Please enter your full name.");
+      clientName.focus();
+      return;
+    }
+
+    if (!clientEmail || !clientEmail.value.trim()) {
+      alert("Please enter your email address.");
+      clientEmail.focus();
+      return;
+    }
+
+    if (!companyName || !companyName.value.trim()) {
+      alert("Please enter your company name.");
+      companyName.focus();
+      return;
+    }
+
+    if (!consultationReason || !consultationReason.value.trim()) {
+      alert("Please tell us the reason for your consultation.");
+      consultationReason.focus();
+      return;
+    }
+
+    /*
+     * Collect booking information
+     */
+    var bookingDetails = {
+      date: selectedDate,
+      time: timeSlot.value,
+      name: clientName.value.trim(),
+      email: clientEmail.value.trim(),
+      company: companyName.value.trim(),
+      reason: consultationReason.value.trim()
+    };
+
+    console.log("Booking Details:", bookingDetails);
+
+    alert(
+      "Thank you, " + bookingDetails.name + "!\n\n" +
+      "Your consultation request has been received.\n\n" +
+      "Date: " + bookingDetails.date + "\n" +
+      "Time: " + bookingDetails.time + "\n" +
+      "Company: " + bookingDetails.company
+    );
+
+  });
+
+}
+
 
     calendar.innerHTML = "";
 
