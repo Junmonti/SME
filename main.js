@@ -175,5 +175,255 @@ window.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+/* ══════════════════════════════════════════════
+   BOOKING CALENDAR
+══════════════════════════════════════════════ */
+
+var calendar = document.getElementById("calendar");
+var timeSlot = document.getElementById("timeSlot");
+
+if (calendar) {
+
+  var currentDate = new Date();
+  var selectedDate = null;
+
+  /*
+   * TEMPORARY BOOKED DATES
+   *
+   * Later these will come from your database/backend.
+   *
+   * Format:
+   * "YYYY-MM-DD"
+   */
+  var bookedDates = [
+    "2026-09-08",
+    "2026-09-12",
+    "2026-09-18",
+    "2026-09-25"
+  ];
+
+  /*
+   * Available appointment times
+   */
+  var availableTimes = [
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "14:00",
+    "15:00",
+    "16:00"
+  ];
+
+  function formatDate(date) {
+    var year = date.getFullYear();
+    var month = String(date.getMonth() + 1).padStart(2, "0");
+    var day = String(date.getDate()).padStart(2, "0");
+
+    return year + "-" + month + "-" + day;
+  }
+
+  function renderCalendar() {
+
+    calendar.innerHTML = "";
+
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth();
+
+    /*
+     * First day of the month
+     */
+    var firstDay = new Date(year, month, 1);
+
+    /*
+     * Number of days in month
+     */
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    /*
+     * Convert Sunday=0 into Monday=0
+     */
+    var startingDay = firstDay.getDay();
+
+    if (startingDay === 0) {
+      startingDay = 6;
+    } else {
+      startingDay--;
+    }
+
+    /*
+     * Create empty cells before day 1
+     */
+    for (var i = 0; i < startingDay; i++) {
+
+      var empty = document.createElement("div");
+
+      empty.className = "day empty";
+
+      calendar.appendChild(empty);
+    }
+
+    /*
+     * Create calendar days
+     */
+    for (var day = 1; day <= daysInMonth; day++) {
+
+      var date = new Date(year, month, day);
+
+      var dateString = formatDate(date);
+
+      var dayElement = document.createElement("div");
+
+      dayElement.className = "day";
+
+      dayElement.textContent = day;
+
+      /*
+       * Check if this date is booked
+       */
+      if (bookedDates.indexOf(dateString) !== -1) {
+
+        dayElement.classList.add("full");
+
+        dayElement.title = "Fully booked";
+
+      } else {
+
+        dayElement.classList.add("available");
+
+        dayElement.addEventListener("click", function() {
+
+          selectDate(this, year, month);
+
+        });
+
+      }
+
+      /*
+       * Keep selected date highlighted
+       */
+      if (selectedDate === dateString) {
+        dayElement.classList.add("selected");
+      }
+
+      calendar.appendChild(dayElement);
+    }
+
+    /*
+     * Update month heading
+     */
+    var monthYear = document.getElementById("monthYear");
+
+    if (monthYear) {
+
+      monthYear.textContent = currentDate.toLocaleDateString(
+        "en-ZA",
+        {
+          month: "long",
+          year: "numeric"
+        }
+      );
+
+    }
+
+  }
+
+  /*
+   * Select a calendar date
+   */
+  function selectDate(element, year, month) {
+
+    var day = parseInt(element.textContent, 10);
+
+    var date = new Date(year, month, day);
+
+    selectedDate = formatDate(date);
+
+    /*
+     * Remove previous selection
+     */
+    document.querySelectorAll(".day.selected").forEach(function(dayEl) {
+      dayEl.classList.remove("selected");
+    });
+
+    /*
+     * Highlight selected date
+     */
+    element.classList.add("selected");
+
+    /*
+     * Load available times
+     */
+    loadTimeSlots();
+
+  }
+
+  /*
+   * Load available times into dropdown
+   */
+  function loadTimeSlots() {
+
+    if (!timeSlot) return;
+
+    timeSlot.innerHTML =
+      '<option value="">Select Time</option>';
+
+    availableTimes.forEach(function(time) {
+
+      var option = document.createElement("option");
+
+      option.value = time;
+
+      option.textContent = time;
+
+      timeSlot.appendChild(option);
+
+    });
+
+  }
+
+  /*
+   * Previous month
+   */
+  var previousMonth = document.getElementById("prevMonth");
+
+  if (previousMonth) {
+
+    previousMonth.addEventListener("click", function() {
+
+      currentDate.setMonth(currentDate.getMonth() - 1);
+
+      renderCalendar();
+
+    });
+
+  }
+
+  /*
+   * Next month
+   */
+  var nextMonth = document.getElementById("nextMonth");
+
+  if (nextMonth) {
+
+    nextMonth.addEventListener("click", function() {
+
+      currentDate.setMonth(currentDate.getMonth() + 1);
+
+      renderCalendar();
+
+    });
+
+  }
+
+  /*
+   * Draw calendar when page loads
+   */
+  renderCalendar();
+
+}
+
+  
 });
 
