@@ -709,96 +709,288 @@ a    { text-decoration: none; color: inherit; }
    BOOKING CALENDAR
 =================================== */
 
-.booking-section{
-    padding*100px 20px;
-    background:#F8FAFC*
+.booking-section {
+    padding: 100px 20px;
+    background: #F8FAFC;
 }
 
-.booking-container{
-    max-wi*th:1000px;
-    margin:auto;
+.booking-container {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.bo*king-container h2{
-    text-align:*enter;
-    color:#0B1F3A;
-    marg*n-bottom:40px;
+.booking-container h2 {
+    text-align: center;
+    color: #0B1F3A;
+    margin-bottom: 40px;
 }
 
-.calendar-header*
-    display:flex;
-*   justify-content:center;
-    ali*n-items:center;
-    gap:20px;
-    *argin-bottom:20px;
+/* Calendar header */
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.calendar-he*der button{
-   *border:none;
-    background*#1D4ED8;
-    color:white;
-    padd*ng:10px 14px;
-    border*radius:8px;
-    cursor:pointer;
-}
-*.calendar-days*
-*calendar-grid{
-    display:grid;
- *  grid-template-columns:repeat(7,1*r);
-    gap:10px;
+.calendar-header button {
+    border: none;
+    background: #1D4ED8;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
 }
 
-.calendar-day* div{
-    text-align:center;
-    f*nt-weight:bold;
+.calendar-header button:hover {
+    background: #2563EB;
+    transform: translateY(-1px);
 }
 
-.day{
-    heigh*:70px;
-    display:flex;
-    justi*y-content:center;
-    align-items:*enter;
-    border-radius:10px;
-   *cursor:pointer;
-    background:whi*e;
-    border:*px solid #e5e7eb;
-*
-
-*available{
-   *background:#dcfce7;
+/* Month / year title */
+#monthYear {
+    min-width: 180px;
+    text-align: center;
+    color: #0B1F3A;
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
-.full{
-    *ackground:#fecaca;
-    color:#991b*b;
-    cursor:not-allowed;
+/* Calendar weekday headings + days */
+.calendar-days,
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
 }
 
-.sel*cted{
-    background:#2563eb;
-    *olor:white;
+/* Weekday names */
+.calendar-days div {
+    text-align: center;
+    font-weight: 700;
+    color: #4B5563;
+    font-size: 0.85rem;
+    padding: 8px 0;
 }
 
-.booking-form{
-    *argin-top:40px;
-    display:flex;
-*   flex-direction:column;
-    gap:*5px;
+/* Calendar day */
+.day {
+    min-height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #E5E7EB;
+    color: #374151;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+/* Available day */
+.day.available {
+    background: #DCFCE7;
+    border-color: #86EFAC;
+    color: #166534;
+}
+
+.day.available:hover {
+    background: #BBF7D0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.15);
+}
+
+/* Fully booked day */
+.day.full {
+    background: #FECACA;
+    border-color: #FCA5A5;
+    color: #991B1B;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Selected day */
+.day.selected {
+    background: #2563EB;
+    border-color: #1D4ED8;
+    color: white;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* Empty calendar cells */
+.day.empty {
+    background: transparent;
+    border: none;
+    cursor: default;
+}
+
+/* Booking form */
+.booking-form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .booking-form input,
-.book*ng-form select{
-    padding:12px;
-*   border:1px solid #ddd;
-    bord*r-radius:8px;
+.booking-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: white;
+    color: #374151;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.booking*form button{
-    background:#F9731*;
-    color:white;
-    border:none*
-    padding:14px;
-   *border*radius:8px;
-    cursor:pointer;
-  **font-weight:bold;
+.booking-form input:focus,
+.booking-form select:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
+
+/* Time dropdown */
+#timeSlot {
+    cursor: pointer;
+}
+
+/* Booking button */
+.booking-form button {
+    width: 100%;
+    background: linear-gradient(
+        135deg,
+        #FB923C,
+        #F97316,
+        #EA580C
+    );
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.25);
+    transition: all 0.3s ease;
+}
+
+.booking-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(249, 115, 22, 0.35);
+}
+
+/* Calendar legend */
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.calendar-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #4B5563;
+}
+
+.legend-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+}
+
+.legend-available {
+    background: #DCFCE7;
+    border: 1px solid #86EFAC;
+}
+
+.legend-booked {
+    background: #FECACA;
+    border: 1px solid #FCA5A5;
+}
+
+.legend-selected {
+    background: #2563EB;
+}
+
+/* ===================================
+   BOOKING CALENDAR — MOBILE
+=================================== */
+
+@media (max-width: 768px) {
+
+    .booking-section {
+        padding: 70px 16px;
+    }
+
+    .calendar-days,
+    .calendar-grid {
+        gap: 5px;
+    }
+
+    .day {
+        min-height: 48px;
+        font-size: 0.85rem;
+        border-radius: 7px;
+    }
+
+    .calendar-header {
+        gap: 12px;
+    }
+
+    .calendar-header button {
+        padding: 8px 11px;
+    }
+
+    #monthYear {
+        min-width: 140px;
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .booking-section {
+        padding: 60px 12px;
+    }
+
+    .calendar-days,
+    .calendar-grid {
+        gap: 3px;
+    }
+
+    .day {
+        min-height: 42px;
+        font-size: 0.75rem;
+    }
+
+    .calendar-days div {
+        font-size: 0.7rem;
+    }
+
+    .calendar-header {
+        gap: 8px;
+    }
+
+    #monthYear {
+        min-width: 120px;
+        font-size: 0.95rem;
+    }
+
+    .calendar-header button {
+        padding: 7px 9px;
+        font-size: 0.8rem;
+    }
+}
+
