@@ -488,35 +488,50 @@ through strategic accounting and advisory solutions.
 
         <div class="booking-form">
 
-            <h3>Appointment Details</h3>
+    <h3>Appointment Details</h3>
 
-            <p id="selectedDate">
-                Please select a date.
-            </p>
+    <p id="selectedDate">
+        Please select a date.
+    </p>
 
-            <select id="timeSlot">
-                <option value="">Select Time</option>
-            </select>
+    <select id="timeSlot">
+        <option value="">Select Time</option>
+    </select>
 
-            <input
-                type="text"
-                id="clientName"
-                placeholder="Full Name"
-            >
+    <input
+        type="text"
+        id="clientName"
+        placeholder="Full Name"
+        required
+    >
 
-            <input
-                type="email"
-                id="clientEmail"
-                placeholder="Email Address"
-            >
+    <input
+        type="text"
+        id="companyName"
+        placeholder="Company Name"
+        required
+    >
 
-            <button id="bookBtn">
-                Book Consultation
-            </button>
+    <input
+        type="email"
+        id="clientEmail"
+        placeholder="Email Address"
+        required
+    >
 
-        </div>
+    <textarea
+        id="bookingReason"
+        placeholder="Reason for consultation"
+        rows="4"
+        required
+    ></textarea>
 
-    </div>
+    <button id="bookBtn" type="button">
+        Book Consultation
+    </button>
+
+</div>
+
 
 </section>
 
