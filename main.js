@@ -176,3 +176,148 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+/* ===================================
+   BOOKING CALENDAR
+=================================== */
+
+if (document.getElementById("calendar")) {
+
+    const calendar =
+        document.getElementById("calendar");
+
+    const monthYear =
+        document.getElementById("monthYear");
+
+    const selectedDate =
+        document.getElementById("selectedDate");
+
+    const timeSlot =
+        document.getElementById("timeSlot");
+
+    let currentDate = new Date();
+
+    const maxBookings = 5;
+
+    /*
+       DEMO DATA
+
+       Any day with 5 bookings
+       becomes FULLY BOOKED
+    */
+
+    const bookings = {
+        "2026-09-08": 5,
+        "2026-09-12": 5,
+        "2026-09-18": 5,
+        "2026-09-25": 5
+    };
+
+    function renderCalendar() {
+
+        calendar.innerHTML = "";
+
+        const year =
+            currentDate.getFullYear();
+
+        const month =
+            currentDate.getMonth();
+
+        monthYear.textContent =
+            currentDate.toLocaleDateString(
+                "en-ZA",
+                {
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+        const firstDay =
+            new Date(year, month, 1).getDay();
+
+        const daysInMonth =
+            new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDay; i++) {
+
+            const empty =
+                document.createElement("div");
+
+            calendar.appendChild(empty);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+
+            const cell =
+                document.createElement("div");
+
+            cell.classList.add("day");
+
+            cell.textContent = day;
+
+            const dateString =
+                `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+            if (bookings[dateString] >= maxBookings) {
+
+                cell.classList.add("full");
+
+            } else {
+
+                cell.classList.add("available");
+
+                cell.addEventListener("click", function () {
+
+                    document
+                        .querySelectorAll(".day")
+                        .forEach(dayCell => {
+                            dayCell.classList.remove("selected");
+                        });
+
+                    cell.classList.add("selected");
+
+                    selectedDate.textContent =
+                        "Selected Date: " + dateString;
+
+                    loadTimeSlots();
+                });
+            }
+
+            calendar.appendChild(cell);
+        }
+    }
+
+    function loadTimeSlots() {
+
+        timeSlot.innerHTML =
+            '<option value="">Select Time</option>';
+
+        const slots = [
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00"
+        ];
+
+        slots.forEach(function (slot) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = slot;
+
+            option.textContent = slot;
+
+            timeSlot.appendChild(option);
+        });
+    }
+
+
+    /* Previous Month */
+
+    document
+        .getElementById("
