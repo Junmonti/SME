@@ -784,40 +784,50 @@ a    { text-decoration: none; color: inherit; }
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
-    background: white;
+    background: #ffffff;
     border: 1px solid #E5E7EB;
     color: #374151;
     font-weight: 600;
     transition: all 0.25s ease;
 }
 
-/* Available day */
+/* Available day — WHITE */
 .day.available {
-    background: #DCFCE7;
-    border-color: #86EFAC;
-    color: #166534;
+    background: #ffffff;
+    border-color: #E5E7EB;
+    color: #374151;
 }
 
 .day.available:hover {
-    background: #BBF7D0;
+    background: #F8FAFC;
+    border-color: #3B82F6;
+    color: #2563EB;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.15);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.10);
 }
 
-/* Fully booked day */
+/* Fully booked day — LIGHT GREY */
 .day.full {
-    background: #FECACA;
-    border-color: #FCA5A5;
-    color: #991B1B;
+    background: #F3F4F6;
+    border-color: #E5E7EB;
+    color: #9CA3AF;
     cursor: not-allowed;
-    opacity: 0.8;
+    opacity: 1;
 }
 
-/* Selected day */
+.day.full:hover {
+    background: #F3F4F6;
+    border-color: #E5E7EB;
+    color: #9CA3AF;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Selected day — BLUE */
 .day.selected {
     background: #2563EB;
     border-color: #1D4ED8;
-    color: white;
+    color: #ffffff;
     box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
@@ -827,6 +837,7 @@ a    { text-decoration: none; color: inherit; }
     border: none;
     cursor: default;
 }
+
 
 /* Booking form */
 .booking-form {
