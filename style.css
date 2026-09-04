@@ -704,3 +704,101 @@ a    { text-decoration: none; color: inherit; }
   .btn-hero, .btn-ghost { width: 100%; justify-content: center; }
   .cta-btns { flex-direction: column; align-items: center; }
 }
+
+/* ===================================
+   BOOKING CALENDAR
+=================================== */
+
+.booking-section{
+    padding*100px 20px;
+    background:#F8FAFC*
+}
+
+.booking-container{
+    max-wi*th:1000px;
+    margin:auto;
+}
+
+.bo*king-container h2{
+    text-align:*enter;
+    color:#0B1F3A;
+    marg*n-bottom:40px;
+}
+
+.calendar-header*
+    display:flex;
+*   justify-content:center;
+    ali*n-items:center;
+    gap:20px;
+    *argin-bottom:20px;
+}
+
+.calendar-he*der button{
+   *border:none;
+    background*#1D4ED8;
+    color:white;
+    padd*ng:10px 14px;
+    border*radius:8px;
+    cursor:pointer;
+}
+*.calendar-days*
+*calendar-grid{
+    display:grid;
+ *  grid-template-columns:repeat(7,1*r);
+    gap:10px;
+}
+
+.calendar-day* div{
+    text-align:center;
+    f*nt-weight:bold;
+}
+
+.day{
+    heigh*:70px;
+    display:flex;
+    justi*y-content:center;
+    align-items:*enter;
+    border-radius:10px;
+   *cursor:pointer;
+    background:whi*e;
+    border:*px solid #e5e7eb;
+*
+
+*available{
+   *background:#dcfce7;
+}
+
+.full{
+    *ackground:#fecaca;
+    color:#991b*b;
+    cursor:not-allowed;
+}
+
+.sel*cted{
+    background:#2563eb;
+    *olor:white;
+}
+
+.booking-form{
+    *argin-top:40px;
+    display:flex;
+*   flex-direction:column;
+    gap:*5px;
+}
+
+.booking-form input,
+.book*ng-form select{
+    padding:12px;
+*   border:1px solid #ddd;
+    bord*r-radius:8px;
+}
+
+.booking*form button{
+    background:#F9731*;
+    color:white;
+    border:none*
+    padding:14px;
+   *border*radius:8px;
+    cursor:pointer;
+  **font-weight:bold;
+}
